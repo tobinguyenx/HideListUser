@@ -4,6 +4,7 @@ class UserInfor extends React.Component {
   state = {
     name: "Tai Nguyen",
     location: "Melbourne, VIC",
+    age: "",
   };
 
   handleClick(event) {
@@ -15,11 +16,20 @@ class UserInfor extends React.Component {
     });
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
-      // name: event.target.value;
+      name: event.target.value,
     });
-  }
+  };
+
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+    this.props.handleAddnewUser({
+      id: Math.floor(Math.random() * 100 + 1),
+      name: this.state.name,
+      age: this.state.age,
+    });
+  };
 
   render() {
     return (
@@ -33,14 +43,14 @@ class UserInfor extends React.Component {
           Click me
         </button>
 
-        <form>
+        <form onSubmit={this.handleOnSubmit}>
           <input
             type="text"
-            onChange={(event) => {
-              this.handleChange();
-            }}
+            value={this.state.name}
+            onChange={this.handleChange}
           />
-          <button>Submit</button>
+
+          <button type="submit">Submit</button>
         </form>
       </div>
     );
