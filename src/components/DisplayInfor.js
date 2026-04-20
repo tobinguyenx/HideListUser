@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const DisplayInfor = (props) => {
   const { listUsers, handleDeleteUser } = props;
@@ -8,6 +8,20 @@ const DisplayInfor = (props) => {
   const handleShowHide = () => {
     setIsShowListUser(!isShowListUser);
   };
+
+  console.log(" call me render");
+  useEffect(() => {
+    setTimeout(() => {
+      console.log(">>>> setTimeout");
+    }, 10000);
+    console.log("call me useEffect");
+  });
+
+  useEffect(() => {
+    if (listUsers.length === 0) {
+      alert("You deleted all users ");
+    }
+  });
 
   return (
     <div>
