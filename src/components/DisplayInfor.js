@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const DisplayInfor = (props) => {
-  const [listUsers, handleDeleteUser] = props;
+  const { listUsers, handleDeleteUser } = props;
 
   const [isShowListUser, setIsShowListUser] = useState();
 

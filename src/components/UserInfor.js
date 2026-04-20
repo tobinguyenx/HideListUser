@@ -1,59 +1,94 @@
-import React from "react";
+import React, { useState } from "react";
 
-class UserInfor extends React.Component {
-  state = {
-    name: "Tai Nguyen",
-    location: "Melbourne, VIC",
-    age: "",
-  };
+// class UserInfor extends React.Component {
+//   state = {
+//     name: "Tai Nguyen",
+//     location: "Melbourne, VIC",
+//     age: "",
+//   };
 
-  handleClick(event) {
-    console.log("This is click from hanleClick");
+//   handleClick(event) {
+//     console.log("This is click from hanleClick");
+//     console.log();
+
+//     this.setState({
+//       name: "Nguyen Van Tai",
+//     });
+//   }
+
+//   handleChange = (event) => {
+//     this.setState({
+//       name: event.target.value,
+//     });
+//   };
+
+//   handleOnSubmit = (event) => {
+//     event.preventDefault();
+//     this.props.handleAddnewUser({
+//       id: Math.floor(Math.random() * 100 + 1),
+//       name: this.state.name,
+//       age: this.state.age,
+//     });
+//   };
+
+const UserInfor = (props) => {
+  //   state = {
+  //     name: "Tai Nguyen",
+  //     location: "Melbourne, VIC",
+  //     age: "",
+  //   };
+
+  const [name, setName] = useState("Tai Nguyen");
+  const [location, setLocation] = useState("");
+
+  //   handleClick(event) {
+  //     console.log("This is click from hanleClick");
+  //     console.log();
+
+  //     this.setState({
+  //       name: "Nguyen Van Tai",
+  //     });
+  //   }
+
+  const handleClick = () => {
     console.log();
-
-    this.setState({
-      name: "Nguyen Van Tai",
-    });
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      name: event.target.value,
-    });
+    setName("Nguyen Van Tai");
   };
 
-  handleOnSubmit = (event) => {
+  //   handleChange = (event) => {
+  //     this.setState({
+  //       name: event.target.value,
+  //     });
+  //   };
+
+  const handleChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleOnSubmit = (event) => {
     event.preventDefault();
-    this.props.handleAddnewUser({
+    props.handleAddnewUser({
       id: Math.floor(Math.random() * 100 + 1),
-      name: this.state.name,
-      age: this.state.age,
+      name: name,
     });
   };
+  return (
+    <div className="App">
+      <h1>My name is {name}</h1>
+      <button
+        onClick={() => {
+          handleClick();
+        }}
+      >
+        Click me
+      </button>
 
-  render() {
-    return (
-      <div className="App">
-        <h1>My name is {this.state.name}</h1>
-        <button
-          onClick={() => {
-            this.handleClick();
-          }}
-        >
-          Click me
-        </button>
+      <form onSubmit={handleOnSubmit}>
+        <input type="text" value={name} onChange={handleChange} />
 
-        <form onSubmit={this.handleOnSubmit}>
-          <input
-            type="text"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    );
-  }
-}
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
 export default UserInfor;
